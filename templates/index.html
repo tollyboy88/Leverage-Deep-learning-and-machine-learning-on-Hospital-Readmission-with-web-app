@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Readmission Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hospital Readmission Prediction</h1>
+        <form action="/predict" method="post">
+            <!-- Categorical: age -->
+            <div class="form-group">
+                <label for="age">Age Range:</label>
+                <select id="age" name="age" required>
+                    <option value="[40-50)">[40-50)</option>
+                    <option value="[50-60)">[50-60)</option>
+                    <option value="[60-70)">[60-70)</option>
+                    <option value="[70-80)">[70-80)</option>
+                    <option value="[80-90)">[80-90)</option>
+                    <option value="[90-100)">[90-100)</option>
+                </select>
+            </div>
+
+            <!-- Numerical: time_in_hospital -->
+            <div class="form-group">
+                <label for="time_in_hospital">Time in Hospital:</label>
+                <input type="number" id="time_in_hospital" name="time_in_hospital" min="1" max="14" required>
+            </div>
+
+            <!-- Numerical: n_procedures -->
+            <div class="form-group">
+                <label for="n_procedures">Number of Procedures:</label>
+                <input type="number" id="n_procedures" name="n_procedures" min="1" max="111" required>
+            </div>
+
+            <!-- Numerical: n_lab_procedures -->
+            <div class="form-group">
+                <label for="n_lab_procedures">Number of Lab Procedures:</label>
+                <input type="number" id="n_lab_procedures" name="n_lab_procedures" min="0" max="6" required>
+            </div>
+
+            <!-- Numerical: n_medications -->
+            <div class="form-group">
+                <label for="n_medications">Number of Medications:</label>
+                <input type="number" id="n_medications" name="n_medications" min="1" max="79" required>
+            </div>
+
+            <!-- Numerical: n_outpatient -->
+            <div class="form-group">
+                <label for="n_outpatient">Number of Outpatient Visits:</label>
+                <input type="number" id="n_outpatient" name="n_outpatient" min="0" max="33" required>
+            </div>
+
+            <!-- Numerical: n_inpatient -->
+            <div class="form-group">
+                <label for="n_inpatient">Number of Inpatient Visits:</label>
+                <input type="number" id="n_inpatient" name="n_inpatient" min="0" max="15" required>
+            </div>
+
+            <!-- Numerical: n_emergency -->
+            <div class="form-group">
+                <label for="n_emergency">Number of Emergency Visits:</label>
+                <input type="number" id="n_emergency" name="n_emergency" min="0" max="64" required>
+            </div>
+
+            <!-- Categorical: medical_specialty -->
+            <div class="form-group">
+                <label for="medical_specialty">Medical Specialty:</label>
+                <select id="medical_specialty" name="medical_specialty" required>
+                    <option value="Cardiology">Cardiology</option>
+                    <option value="Emergency/Trauma">Emergency/Trauma</option>
+                    <option value="Missing">Missing</option>
+                    <option value="Other">Other</option>
+                    <option value="Family/GeneralPractice">Family/GeneralPractice</option>
+                    <option value="Surgery">Surgery</option>
+                    <option value="InternalMedicine">InternalMedicine</option>
+                </select>
+            </div>
+
+            <!-- Categorical: diag_1 -->
+            <div class="form-group">
+                <label for="diag_1">Diagnosis 1:</label>
+                <select id="diag_1" name="diag_1" required>
+                    <option value="Circulatory">Circulatory</option>
+                    <option value="Respiratory">Respiratory</option>
+                    <option value="Digestive">Digestive</option>
+                    <option value="Other">Other</option>
+                    <option value="Missing">Missing</option>
+                    <option value="Injury">Injury</option>
+                    <option value="Diabetes">Diabetes</option>
+                    <option value="Musculoskeletal">Musculoskeletal</option>
+                </select>
+            </div>
+
+            <!-- Categorical: diag_2 -->
+            <div class="form-group">
+                <label for="diag_2">Diagnosis 2:</label>
+                <select id="diag_2" name="diag_2" required>
+                    <option value="Circulatory">Circulatory</option>
+                    <option value="Respiratory">Respiratory</option>
+                    <option value="Digestive">Digestive</option>
+                    <option value="Other">Other</option>
+                    <option value="Missing">Missing</option>
+                    <option value="Injury">Injury</option>
+                    <option value="Diabetes">Diabetes</option>
+                    <option value="Musculoskeletal">Musculoskeletal</option>
+                </select>
+            </div>
+
+            <!-- Categorical: diag_3 -->
+            <div class="form-group">
+                <label for="diag_3">Diagnosis 3:</label>
+                <select id="diag_3" name="diag_3" required>
+                    <option value="Circulatory">Circulatory</option>
+                    <option value="Respiratory">Respiratory</option>
+                    <option value="Digestive">Digestive</option>
+                    <option value="Other">Other</option>
+                    <option value="Missing">Missing</option>
+                    <option value="Injury">Injury</option>
+                    <option value="Diabetes">Diabetes</option>
+                    <option value="Musculoskeletal">Musculoskeletal</option>
+                </select>
+            </div>
+
+            <!-- Categorical: glucose_test -->
+            <div class="form-group">
+                <label for="glucose_test">Glucose Test:</label>
+                <select id="glucose_test" name="glucose_test" required>
+                    <option value="high">high</option>
+                    <option value="no">no</option>
+                    <option value="normal">normal</option>
+                </select>
+            </div>
+
+            <!-- Categorical: A1Ctest -->
+            <div class="form-group">
+                <label for="A1Ctest">A1C Test:</label>
+                <select id="A1Ctest" name="A1Ctest" required>
+                    <option value="high">high</option>
+                    <option value="no">no</option>
+                    <option value="normal">normal</option>
+                </select>
+            </div>
+
+            <!-- Categorical: change -->
+            <div class="form-group">
+                <label for="change">Change:</label>
+                <select id="change" name="change" required>
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
+                </select>
+            </div>
+
+            <!-- Categorical: diabetes_med -->
+            <div class="form-group">
+                <label for="diabetes_med">Diabetes Medication:</label>
+                <select id="diabetes_med" name="diabetes_med" required>
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Predict</button>
+        </form>
+    </div>
+</body>
+</html>

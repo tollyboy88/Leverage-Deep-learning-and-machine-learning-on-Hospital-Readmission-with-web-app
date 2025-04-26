@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        <p>Prediction: <strong>{{ prediction }}</strong></p>
+        <h2>Explanation</h2>
+        <div id="shap-container">
+            {{ shap_html|safe }}
+        </div>
+        <a href="/" class="btn">Make Another Prediction</a>
+    </div>
+</body>
+</html>
